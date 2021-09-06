@@ -2,9 +2,19 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const Search = () => {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState('blockchain');
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [results, setResults] = useState([]);
 
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term)
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [term]);
 
   useEffect(() => {
     const search = async () => {
@@ -14,24 +24,17 @@ const Search = () => {
           list: 'search',
           origin: '*',
           format: 'json',
-          srsearch: term
+          srsearch: debouncedTerm
         },
       });
 
       setResults(data.query.search);
     };
 
-    const timeOutId = setTimeout(() => {
-      if (term) {
-        search();
-      }
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeOutId)
+    if (debouncedTerm) {
+      search();
     }
-
-  }, [term])
+  }, [debouncedTerm])
 
   const renderedResults = results.map((result) => {
     return (
