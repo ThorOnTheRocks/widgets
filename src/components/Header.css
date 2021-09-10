@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-box {
+  display: flex;
+  
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.react-icon {
+  margin-top: 9px;
+  color: #61DBFB;
+  font-size: 20px;
+}

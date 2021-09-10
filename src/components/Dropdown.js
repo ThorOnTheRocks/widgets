@@ -32,7 +32,6 @@ const Dropdown = ({ options, label, selected, onChangeSelected }) => {
     )
   })
 
-
   return (
     <div ref={ref} className="ui form">
       <div className="field">
@@ -49,9 +48,8 @@ const Dropdown = ({ options, label, selected, onChangeSelected }) => {
           </div>
         </div>
       </div>
-      {/* <p style={{ color: `${selected.value}` }}>
-        This text is {selected.value}!
-      </p> */}
+      {window.location.pathname === '/dropdown' ? <p style={{ color: `${selected.value}` }}>
+        This text is {selected.value}!</p> : ''}
     </div>
   )
 }
